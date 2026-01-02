@@ -1,0 +1,16 @@
+:root{
+  --card-height: 100%;
+}
+body{background:#f8f9fa}
+.product-card{
+  min-height: 160px;
+}
+.product-img{
+  max-height:140px;
+  object-fit:contain;
+  width:100%;
+}
+.card-title{font-size:1rem}
+.price{font-weight:700;color:#0d6efd}
+.badge-qty{background:#6c757d;color:#fff}
+footer{color:#666}
