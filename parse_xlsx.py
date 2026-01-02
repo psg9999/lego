@@ -47,6 +47,18 @@ def normalize_row(row_dict):
             quantity = int(float(str(qty_raw)))
         except Exception:
             quantity = 0
+    # add 1 to each set's quantity per user request
+    # quantity parsed from the sheet (do not add here); we'll compute totals by counting occurrences
+    # original MSRP / list price if present
+    msrp_raw = g('msrp','rrp','list_price','retail','recommended_retail_price')
+    try:
+        msrp = float(msrp_raw)
+    except Exception:
+        try:
+            msrp = float(str(msrp_raw).replace('$','').replace(',',''))
+        except Exception:
+            msrp = 0.0
+
     imageUrl = str(g('imageurl','image','img'))
     condition = str(g('condition'))
 
@@ -63,6 +75,7 @@ def normalize_row(row_dict):
         'title': title,
         'description': description,
         'price': price,
+        'msrp': msrp,
         'quantity': quantity,
         'imageUrl': imageUrl,
         'condition': condition
@@ -89,14 +102,38 @@ def main():
         row_dict = { header[i] if i < len(header) else f'col{i}': r[i] if i < len(r) else '' for i in range(len(header)) }
         parsed.append(normalize_row(row_dict))
 
+    # Aggregate products by `id` and count how many times each set appears in the sheet
+    products_by_id = {}
+    for p in parsed:
+        pid = p['id']
+        if pid in products_by_id:
+            products_by_id[pid]['quantity'] = products_by_id[pid].get('quantity', 0) + 1
+            # prefer a non-empty title/price/image if current entry lacks it
+            if not products_by_id[pid].get('title') and p.get('title'):
+                products_by_id[pid]['title'] = p.get('title')
+            if (not products_by_id[pid].get('price') or products_by_id[pid].get('price') == 0.0) and p.get('price'):
+                products_by_id[pid]['price'] = p.get('price')
+            if (not products_by_id[pid].get('msrp') or products_by_id[pid].get('msrp') == 0.0) and p.get('msrp'):
+                products_by_id[pid]['msrp'] = p.get('msrp')
+            if not products_by_id[pid].get('imageUrl') and p.get('imageUrl'):
+                products_by_id[pid]['imageUrl'] = p.get('imageUrl')
+        else:
+            copy = p.copy()
+            # initialize quantity to 1 for the first occurrence
+            copy['quantity'] = 1
+            products_by_id[pid] = copy
+
+    final_products = list(products_by_id.values())
+
     # write JSON
     with OUT.open('w', encoding='utf-8') as f:
-        json.dump(parsed, f, indent=2, ensure_ascii=False)
+        json.dump(final_products, f, indent=2, ensure_ascii=False)
 
-    print(f"Wrote {len(parsed)} products to {OUT}")
+    print(f"Wrote {len(final_products)} unique products to {OUT}")
     print("Preview (first 10):")
-    for p in parsed[:10]:
-        print(f"- {p['id']} | {p['title']} | ${p['price']} | qty={p['quantity']}")
+    for p in final_products[:10]:
+        msrp_str = f" msrp=${p['msrp']}" if p.get('msrp') else ''
+        print(f"- {p['id']} | {p['title']} | ${p['price']} | qty={p['quantity']}{msrp_str}")
 
 if __name__ == '__main__':
     main()

@@ -56,10 +56,11 @@ function normalizeRow(row){
   const description = map.description || map.desc || '';
   const price = parseFloat((map.price||0).toString().replace(/[^0-9.-]+/g,'')) || 0;
   const quantity = parseInt(map.quantity || map.qty || map.count || 0) || 0;
+  const msrp = parseFloat((map.msrp||map.list_price||0).toString().replace(/[^0-9.-]+/g,'')) || 0;
   const imageUrl = map.imageurl || map.image || map.img || '';
   const condition = (map.condition || '').toString().toLowerCase();
 
-  return { id: id?.toString() || title, title, description, price, quantity, imageUrl, condition };
+  return { id: id?.toString() || title, title, description, price, msrp, quantity, imageUrl, condition };
 }
 
 function renderProducts(list){
@@ -108,7 +109,20 @@ function renderProducts(list){
     bottom.className = 'mt-auto d-flex justify-content-between align-items-center';
 
     const left = document.createElement('div');
-    left.innerHTML = `<div class="price">$${Number(p.price||0).toFixed(2)}</div><div class="small"><span class="badge badge-qty">Qty: ${p.quantity||0}</span> ${p.condition?'<span class="ms-2">'+p.condition+'</span>':''}</div>`;
+    // display msrp if available and greater than sale price
+    const sale = Number(p.price||0);
+    const orig = Number(p.msrp||0);
+    let priceHtml = '';
+    if(orig && orig > 0 && sale > 0 && orig > sale){
+      const margin = (orig - sale).toFixed(2);
+      const pct = ((orig - sale) / orig * 100).toFixed(1);
+      priceHtml = `<div class="price"><span class="text-muted text-decoration-line-through">$${orig.toFixed(2)}</span> <strong class="ms-2">$${sale.toFixed(2)}</strong></div><div class="small text-success">Margin: $${margin} (${pct}%)</div>`;
+    }else if(orig && orig > 0 && (!sale || sale === 0)){
+      priceHtml = `<div class="price">$${orig.toFixed(2)}</div>`;
+    }else{
+      priceHtml = `<div class="price">$${sale.toFixed(2)}</div>`;
+    }
+    left.innerHTML = `${priceHtml}<div class="small"><span class="badge badge-qty">Qty: ${p.quantity||0}</span> ${p.condition?'<span class="ms-2">'+p.condition+'</span>':''}</div>`;
 
   const right = document.createElement('div');
   // quantity input + add button
@@ -225,8 +239,8 @@ function renderCart(){
 }
 
 function downloadTemplate(){
-  const header = ['id','title','description','price','quantity','imageUrl','condition'];
-  const sample = ['1001','Red 2x4 Bricks (100pcs)','Mixed set of 100 red 2x4 bricks', '0.15', '100','', 'used'];
+  const header = ['id','title','description','price','msrp','quantity','imageUrl','condition'];
+  const sample = ['1001','Red 2x4 Bricks (100pcs)','Mixed set of 100 red 2x4 bricks', '0.15', '0.20', '100','', 'used'];
   const csv = [header, sample].map(r=>r.join(',')).join('\n');
   const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
   const url = URL.createObjectURL(blob);
