@@ -113,6 +113,10 @@ function renderProducts(list){
     const sale = Number(p.price||0);
     const orig = Number(p.msrp||0);
     let priceHtml = '';
+    let msrpHtml = '';
+    if(orig && orig > 0){
+      msrpHtml = `<div class="small text-muted">MSRP: $${orig.toFixed(2)}</div>`;
+    }
     if(orig && orig > 0 && sale > 0 && orig > sale){
       const margin = (orig - sale).toFixed(2);
       const pct = ((orig - sale) / orig * 100).toFixed(1);
@@ -122,7 +126,7 @@ function renderProducts(list){
     }else{
       priceHtml = `<div class="price">$${sale.toFixed(2)}</div>`;
     }
-    left.innerHTML = `${priceHtml}<div class="small"><span class="badge badge-qty">Qty: ${p.quantity||0}</span> ${p.condition?'<span class="ms-2">'+p.condition+'</span>':''}</div>`;
+    left.innerHTML = `${priceHtml}${msrpHtml}<div class="small"><span class="badge badge-qty">Qty: ${p.quantity||0}</span> ${p.condition?'<span class="ms-2">'+p.condition+'</span>':''}</div>`;
 
   const right = document.createElement('div');
   // quantity input + add button
@@ -351,6 +355,10 @@ fetch('products.json').then(r=>{
         const sid = (p.id||'').toString();
         const entry = map[sid];
         if(entry){
+          // populate title from cache if missing
+          if((!p.title || String(p.title).trim() === '') && (entry.name || entry.set_name || entry.set_num_found)){
+            p.title = entry.name || entry.set_name || entry.set_num_found;
+          }
           // prefer explicit image_url if it looks like an image
           if(entry.image_url && (entry.image_url.endsWith('.jpg') || entry.image_url.endsWith('.png') || entry.image_url.endsWith('.jpeg'))){
             p.imageUrl = entry.image_url;
