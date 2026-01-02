@@ -211,22 +211,26 @@
   "31117": {
     "name": "Space Shuttle Adventure",
     "set_num_found": "31117-1",
-    "fetched": 1767293633
+    "fetched": 1767293633,
+    "image_url": "https://images.brickset.com/sets/images/31117-1.jpg"
   },
   "31118": {
     "name": "Surfer Beach House",
     "set_num_found": "31118-1",
-    "fetched": 1767293634
+    "fetched": 1767293634,
+    "image_url": "https://images.brickset.com/sets/images/31118-1.jpg"
   },
   "31120": {
     "name": "Medieval Castle",
     "set_num_found": "31120-1",
-    "fetched": 1767293635
+    "fetched": 1767293635,
+    "image_url": "https://images.brickset.com/sets/images/31120-1.jpg"
   },
   "31122": {
     "name": "Fish Tank",
     "set_num_found": "31122-1",
-    "fetched": 1767293636
+    "fetched": 1767293636,
+    "image_url": "https://images.brickset.com/sets/images/31122-1.jpg"
   },
   "31125": {
     "name": "Fantasy Forest Creatures",
@@ -237,7 +241,8 @@
   "31127": {
     "name": "Street Racer",
     "set_num_found": "31127-1",
-    "fetched": 1767293638
+    "fetched": 1767293638,
+    "image_url": "https://images.brickset.com/sets/images/31127-1.jpg"
   },
   "31132": {
     "name": "Viking Ship and the Midgard Serpent",
@@ -252,7 +257,8 @@
   "40497": {
     "name": "Halloween Owl",
     "set_num_found": "40497-1",
-    "fetched": 1767293642
+    "fetched": 1767293642,
+    "image_url": "https://images.brickset.com/sets/images/40497-1.jpg"
   },
   "40498": {
     "name": "Christmas Penguin",
@@ -431,7 +437,8 @@
   "43202": {
     "name": "The Madrigal House",
     "set_num_found": "43202-1",
-    "fetched": 1767320920
+    "fetched": 1767320920,
+    "image_url": "https://images.brickset.com/sets/images/43202-1.jpg"
   },
   "43205": {
     "name": "Ultimate Adventure Castle",
@@ -466,7 +473,8 @@
   "60264": {
     "name": "Ocean Exploration Submarine",
     "set_num_found": "60264-1",
-    "fetched": 1767320929
+    "fetched": 1767320929,
+    "image_url": "https://images.brickset.com/sets/images/60264-1.jpg"
   },
   "60303": {
     "name": "City Advent Calendar 2021",
@@ -477,12 +485,14 @@
   "60312": {
     "name": "Police Car",
     "set_num_found": "60312-1",
-    "fetched": 1767320932
+    "fetched": 1767320932,
+    "image_url": "https://images.brickset.com/sets/images/60312-1.jpg"
   },
   "60345": {
     "name": "Farmers Market Van",
     "set_num_found": "60345-1",
-    "fetched": 1767320934
+    "fetched": 1767320934,
+    "image_url": "https://images.brickset.com/sets/images/60345-1.jpg"
   },
   "60352": {
     "name": "City Advent Calendar 2022",
@@ -725,7 +735,8 @@
   "75312": {
     "name": "Boba Fett's Starship",
     "set_num_found": "75312-1",
-    "fetched": 1767293711
+    "fetched": 1767293711,
+    "image_url": "https://images.brickset.com/sets/images/75312-1.jpg"
   },
   "75314": {
     "name": "The Bad Batch Attack Shuttle",
@@ -952,7 +963,7 @@
   "76200": {
     "name": "Bro Thor's New Asgard",
     "set_num_found": "76200-1",
-    "image_url": "https://rebrickable.com/sets/76200-1/bro-thors-new-asgard/",
+    "image_url": "https://images.brickset.com/sets/images/76200-1.jpg",
     "fetched": 1767321338
   },
   "76202": {
@@ -982,25 +993,25 @@
   "76208": {
     "name": "The Goat Boat",
     "set_num_found": "76208-1",
-    "image_url": "https://rebrickable.com/sets/76208-1/the-goat-boat/",
+    "image_url": "https://images.brickset.com/sets/images/76208-1.jpg",
     "fetched": 1767321345
   },
   "76213": {
     "name": "King Namor's Throne Room",
     "set_num_found": "76213-1",
-    "image_url": "https://rebrickable.com/sets/76213-1/king-namors-throne-room/",
+    "image_url": "https://images.brickset.com/sets/images/76213-1.jpg",
     "fetched": 1767321347
   },
   "76223": {
     "name": "Nano Gauntlet",
     "set_num_found": "76223-1",
-    "image_url": "https://rebrickable.com/sets/76223-1/nano-gauntlet/",
+    "image_url": "https://images.brickset.com/sets/images/76223-1.jpg",
     "fetched": 1767321349
   },
   "76239": {
     "name": "Batmobile Tumbler: Scarecrow Showdown",
     "set_num_found": "76239-1",
-    "image_url": "https://rebrickable.com/sets/76239-1/batmobile-tumbler-scarecrow-showdown/",
+    "image_url": "https://images.brickset.com/sets/images/76239-1.jpg",
     "fetched": 1767321351
   },
   "76255": {

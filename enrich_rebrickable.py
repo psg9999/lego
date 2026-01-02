@@ -11,6 +11,7 @@ import json
 import sys
 import time
 from pathlib import Path
+from typing import List
 
 try:
     import requests
@@ -31,6 +32,21 @@ def load_cache():
 
 def save_cache(c):
     CACHE.write_text(json.dumps(c, indent=2, ensure_ascii=False), encoding='utf-8')
+
+def brickset(setNumbers:List[str]):
+    key = "3-ox7x-YChK-FEBgV"
+    params = json.dumps({"query": ','.join(setNumbers)})
+    url = f'https://brickset.com/api/v3.asmx/getSets?apiKey={key}&userHash=&params={params}'
+    print(url)
+    result = requests.get(url).json()
+    print(result)
+    if result.get("status", "error") != "error":
+        print(f"Brickset API returned {len(result.get('sets', []))} sets.")
+        print(f"Brickset API returned {result.get('sets', [])}.")
+        all_setnums = {legoSet.get('number'): legoSet.get("LEGOCom", {}).get("US", {}).get("retailPrice", "unknown") for legoSet in result.get("sets", [])}
+        return all_setnums
+    return {}
+
 
 def normalize_setnum(s):
     if s is None:
@@ -57,7 +73,6 @@ def lookup_set_name(setnum, api_key, session, cache):
         resp = session.get(url, headers=headers2)
 
     if resp.status_code == 200:
-        data = resp.json()
         data = resp.json()
         name = data.get('name')
         # try common image fields returned by Rebrickable set endpoint
@@ -150,8 +165,11 @@ def main():
     BACKUP.write_text(backup_text, encoding='utf-8')
 
     updated = []
-    for p in prods:
-        sid = normalize_setnum(p.get('id'))
+    all_setnums = [normalize_setnum(p.get('id')) for p in prods if normalize_setnum(p.get('id'))]
+    brickset_sets = brickset(all_setnums)
+    print("Brickset MSRP data retrieved for sets.", len(all_setnums))
+    for sid in all_setnums:
+        # sid = normalize_setnum(p.get('id'))
         name = cache.get(sid, {}).get('name') if sid else None
         newp = dict(p)
         if name:
@@ -160,6 +178,8 @@ def main():
                 newp['title'] = name
         # persist imageUrl into the product if available in cache
         entry = cache.get(sid, {}) if sid else {}
+        print(brickset_sets)
+        newp['msrp'] = brickset_sets.get(sid, {})
         img = entry.get('image_url') or entry.get('set_img_url')
         if not img and entry.get('set_num_found'):
             setnum = entry.get('set_num_found')
