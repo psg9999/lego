@@ -31,6 +31,7 @@ def normalize_row(row_dict):
     description = str(g('description','desc'))
     # prefer Cost, then price, then Total
     price_raw = g('cost','price','unit_price','total')
+    # print(price_raw)
     try:
         price = float(price_raw)
     except Exception:
@@ -113,8 +114,6 @@ def main():
                 products_by_id[pid]['title'] = p.get('title')
             if (not products_by_id[pid].get('price') or products_by_id[pid].get('price') == 0.0) and p.get('price'):
                 products_by_id[pid]['price'] = p.get('price')
-            if (not products_by_id[pid].get('msrp') or products_by_id[pid].get('msrp') == 0.0) and p.get('msrp'):
-                products_by_id[pid]['msrp'] = p.get('msrp')
             if not products_by_id[pid].get('imageUrl') and p.get('imageUrl'):
                 products_by_id[pid]['imageUrl'] = p.get('imageUrl')
         else:
