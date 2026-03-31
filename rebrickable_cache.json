@@ -211,7 +211,7 @@
   },
   "22318": {
     "name": null,
-    "fetched": 1774982355,
+    "fetched": 1774992020,
     "status": 404
   },
   "31100": {
@@ -764,14 +764,14 @@
     "name": "501st Legion Clone Troopers",
     "set_num_found": "75280-1",
     "msrp": null,
-    "image_url": "https://cdn.rebrickable.com/media/sets/75280-1/56415.jpg",
+    "image_url": "https://images.brickset.com/sets/images/75280-1.jpg",
     "fetched": 1767935389
   },
   "75283": {
     "name": "Armored Assault Tank (AAT)",
     "set_num_found": "75283-1",
     "msrp": null,
-    "image_url": "https://cdn.rebrickable.com/media/sets/75283-1/67386.jpg",
+    "image_url": "https://images.brickset.com/sets/images/75283-1.jpg",
     "fetched": 1767934382
   },
   "75288": {
@@ -1023,35 +1023,35 @@
     "name": "Avengers Speeder Bike Attack",
     "set_num_found": "76142-1",
     "msrp": null,
-    "image_url": "https://images.brickset.com/sets/images/76142-1.jpg",
+    "image_url": "https://cdn.rebrickable.com/media/sets/76142-1/18478.jpg",
     "fetched": 1767934436
   },
   "76143": {
     "name": "Avengers Truck Take-down",
     "set_num_found": "76143-1",
     "msrp": null,
-    "image_url": "https://cdn.rebrickable.com/media/sets/76143-1/18484.jpg",
+    "image_url": "https://images.brickset.com/sets/images/76143-1.jpg",
     "fetched": 1767934437
   },
   "76145": {
     "name": "Eternals' Aerial Assault",
     "set_num_found": "76145-1",
     "msrp": null,
-    "image_url": "https://cdn.rebrickable.com/media/sets/76145-1/91611.jpg",
+    "image_url": "https://images.brickset.com/sets/images/76145-1.jpg",
     "fetched": 1767934439
   },
   "76153": {
     "name": "Avengers Helicarrier",
     "set_num_found": "76153-1",
     "msrp": null,
-    "image_url": "https://cdn.rebrickable.com/media/sets/76153-1/64692.jpg",
+    "image_url": "https://images.brickset.com/sets/images/76153-1.jpg",
     "fetched": 1767934440
   },
   "76154": {
     "name": "Deviant Ambush!",
     "set_num_found": "76154-1",
     "msrp": null,
-    "image_url": "https://cdn.rebrickable.com/media/sets/76154-1/91620.jpg",
+    "image_url": "https://images.brickset.com/sets/images/76154-1.jpg",
     "fetched": 1767936006
   },
   "76155": {
@@ -1322,5 +1322,8 @@
   },
   "42154": {
     "image_url": "https://cdn.rebrickable.com/media/sets/42154-1/131067.jpg"
+  },
+  "66805": {
+    "image_url": "https://cdn.rebrickable.com/media/sets/66805-1/159189.jpg"
   }
 }
